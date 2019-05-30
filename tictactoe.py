@@ -5,28 +5,41 @@
 #       After game ends, enter 'N' for new game, 'Q' for quit
 #       Score is kept track
 #           X - 5, O - 2, Tie - 52
-def main():
-    print_board(True)
-   
+
+win_conditions = [(1, 2, 3),
+                 (4, 5, 6),
+                 (7, 8, 9),
+                 (1, 4, 7),
+                 (2, 5, 8),
+                 (3, 6, 9),
+                 (1, 5, 9),
+                 (3, 5, 7)]
 
 def print_board(board):
-    print('|{}|{}|{}|'.format('board1','board2','board3'))
-    print('-------')
-    print('|{}|{}|{}|'.format('board4','board5','board6'))
-    print('-------')
-    print('|{}|{}|{}|'.format('board7','board8','board9'))
+    print('   |    |  ')
+    print('{} | {} | {}'.format(board[1:3]))
+    print('   |    |')
+    print( '-----------' )
+    print('   |    |')
+    print('{} | {} | {}' .format(board[4:6]))
+    print(   '|    |')
+    print( '-----------')
+    print(   '|   |')
+    print(  '{} | {} | {}'.format(board[7:9]))
+    print(  '|   |'
 
 
 
+def new_game():
+    print('Would you like another game? Type Yes or No:')
+    return input.startswith('y')
 
-
-print('Tic Tac Toe!')
-
-
-
-
-
-
+def tic_tac_toe():
+    board = ['' for  in range(10)]
 
 if __name__ == '__main__':
-    main()
+    print('Tic Tac Toe')
+    while True:
+        ttt()
+        if not new_game():
+               
