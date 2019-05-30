@@ -6,8 +6,6 @@
 #       Score is kept track
 #           X - 5, O - 2, Tie - 52
 def main():
-    board = ['-' for i in range(1,10)]
-    print_board(board)
     win_conditions = [(0, 1, 2),
                  (3, 4, 5),
                  (6, 7, 8),
@@ -16,8 +14,6 @@ def main():
                  (2, 5, 8),
                  (0, 4, 8),
                  (2, 4, 6)]
-    print('Player X has the first move!')
-    player_x()
  
 
 
@@ -34,12 +30,33 @@ def print_board(board):
     print('   {}   |   {}   |   {}'.format(board[6],board[7],board[8]))
     print('       |       |')
 
+def check_end_x():
+    return (board[0] == 'X' and board[1] == 'X' and board[2] == 'X')
+        or (board[3] == 'X' and board[4] == 'X' and board[5] == 'X')
+        or (board[6] == 'X' and board[7] == 'X' and board[8] == 'X')
+        or (board[0] == 'X' and board[3] == 'X' and board[6] == 'X')
+        or (board[1] == 'X' and board[4] == 'X' and board[7] == 'X')
+        or (board[2] == 'X' and board[5] == 'X' and board[8] == 'X')
+        or (board[0] == 'X' and board[4] == 'X' and board[8] == 'X')
+        or (board[2] == 'X' and board[4] == 'X' and board[6] == 'X')
+
+def check_end_o():
+    return (board[0] == 'O' and board[1] == 'O' and board[2] == 'O')
+        or (board[3] == 'O' and board[4] == 'O' and board[5] == 'O')
+        or (board[6] == 'O' and board[7] == 'O' and board[8] == 'O')
+        or (board[0] == 'O' and board[3] == 'O' and board[6] == 'O')
+        or (board[1] == 'O' and board[4] == 'O' and board[7] == 'O')
+        or (board[2] == 'O' and board[5] == 'O' and board[8] == 'O')
+        or (board[0] == 'O' and board[4] == 'O' and board[8] == 'O')
+        or (board[2] == 'O' and board[4] == 'O' and board[6] == 'O')
     
+
+
 def choose_move(board):
     try:
         input_value = int(input())
-        if input_value < 0 or input_value > 9:
-            print('hey loser, thats outa range')
+        if input_value < 0 or input_value > 8:
+            print('hey loser, thats outa the board. try 0 to 8')
             return choose_move(board)
         if board[input_value] != '-':
             print('nice try dumbass, that is chosen already')
@@ -58,13 +75,18 @@ while True: # this loops forever
     board[m] = "O"
     print('      Tic Tac Toe!')
     print_board(board)
+    if check_end_o():
+        print('Congratulations Player 0!!! X is a loser!!!')
+        break
     print('Player X, what move would like to make? ')
-
     m = choose_move(board)
     board[m] = "X"
-    print('      Tic Tac Toe!')    
+    print('      Tic Tac Toe!')
     print_board(board)
-    print('Player 0, what move would like to make? ')
+    if check_end_x():
+        print('Congratulations Player X!!! O is a loser!!!')
+        break
+    
 
 if __name__ == '__main__':
     main()  
