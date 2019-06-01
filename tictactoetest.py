@@ -35,6 +35,10 @@ def make_move(board,letter,move):
 def winner(board,letter):
 
 
+def player_score():
+    count_x = 0
+    count_o = 0
+    
 
 play_again()
         if not play_again()
